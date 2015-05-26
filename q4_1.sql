@@ -1,0 +1,2 @@
+SELECT Subscribers.user_id, firstname, lastname, deposit FROM Subscribers,(SELECT user_id, deposit, DENSE_RANK()OVER(ORDER BY deposit DESC) AS rank FROM Reservation WHERE TO_CHAR(end_date, 'YYYY') = 2013)highest_deposits WHERE rank<=3 AND Subscribers.user_id = highest_deposits.user_id
+/

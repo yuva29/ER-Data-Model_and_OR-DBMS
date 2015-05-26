@@ -1,0 +1,2 @@
+SELECT Subscribers.user_id, firstname, lastname, tot_deposit FROM Subscribers,(SELECT SUM(deposit) AS tot_deposit, user_id FROM Reservation WHERE TO_CHAR(end_date, 'YYYY') = 2013 GROUP BY user_id ORDER BY SUM(deposit) DESC)total_deposits WHERE rownum<=3 AND Subscribers.user_id = total_deposits.user_id
+/

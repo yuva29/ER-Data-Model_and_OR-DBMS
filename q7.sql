@@ -1,0 +1,2 @@
+SELECT Villas.villa_id, Villas.name, reserve_days AS reserve_nights FROM Villas, (SELECT SUM(end_date-start_date) AS reserve_days, villa_id from reservation WHERE TO_CHAR(end_date, 'YYYY')=2014 group by villa_id ORDER BY SUM(end_date-start_date) DESC)Reservation_Nights WHERE Villas.villa_id = Reservation_Nights.villa_id AND rownum<=1
+/

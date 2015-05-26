@@ -1,0 +1,2 @@
+SELECT Subscribers.user_id, firstname,lastname FROM Subscribers, (SELECT R1.user_id FROM Reservation R1 INNER JOIN Reservation R2 ON R2.start_date > R1.start_date AND R2.start_date < R1.end_date AND R1.user_id =R2.user_id)Overlap_Reservation WHERE Subscribers.user_id = Overlap_Reservation.user_id
+/

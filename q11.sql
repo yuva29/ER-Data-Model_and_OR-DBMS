@@ -1,0 +1,6 @@
+CREATE VIEW Reserve_Nights_08_2013 AS SELECT Villas.villa_id, Villas.name, reserve_days AS reserve_nights FROM Villas, (SELECT SUM(end_date-start_date) AS reserve_days, villa_id from reservation WHERE (TO_CHAR(end_date, 'YYYY')=2013 AND TO_CHAR(end_date,'MM')<=08) group by villa_id ORDER BY SUM(end_date-start_date) DESC)Reservation_Nights WHERE Villas.villa_id = Reservation_Nights.villa_id;
+CREATE VIEW Reserve_Nights_08_2014 AS SELECT Villas.villa_id, Villas.name, reserve_days AS reserve_nights FROM Villas, (SELECT SUM(end_date-start_date) AS reserve_days, villa_id from reservation WHERE (TO_CHAR(end_date, 'YYYY')=2014 AND TO_CHAR(end_date,'MM')<=08) group by villa_id ORDER BY SUM(end_date-start_date) DESC)Reservation_Nights WHERE Villas.villa_id = Reservation_Nights.villa_id;
+SELECT user_id AS owner_id, firstname,lastname FROM Subscribers WHERE Subscribers.user_id IN (SELECT owner_id FROM (SELECT owner_id, Villa_Owners.villa_id FROM Villa_Owners, (SELECT R4.villa_id, R3.reserve_nights, R4.reserve_nights from reserve_nights_08_2014 R4, reserve_nights_08_2013 R3 WHERE R3.villa_id = R4.villa_id AND R4.reserve_nights>=(1.1*R3.reserve_nights))Villa_Growth WHERE Villa_Owners.villa_id = Villa_Growth.villa_id));
+DROP VIEW Reserve_Nights_08_2013;
+DROP VIEW Reserve_Nights_08_2014
+/

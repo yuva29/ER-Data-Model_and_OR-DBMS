@@ -1,0 +1,2 @@
+SELECT Villas.villa_id, Villas.name AS Villa_Name, Subscribers.user_id AS Owner_Id, Subscribers.firstname AS Owner_Firstname, Subscribers.lastname AS Owner_Lastname, avg_rating FROM Villas, Subscribers, (SELECT owner_id, Villa_Owners.villa_id, avg_rating FROM Villa_Owners, (SELECT AVG(rating) AS avg_rating, villa_id FROM Review GROUP BY villa_id ORDER BY AVG(rating) DESC)Rating WHERE Villa_Owners.villa_id = Rating.villa_id AND rownum<=3)Owners WHERE Villas.villa_id = Owners.villa_id AND Subscribers.user_id = Owners.owner_id
+/
