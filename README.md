@@ -7,7 +7,7 @@ The repository contains the following documents
 3. List of documents which contains the actual queries (e.g q1.sql has SQL query which addresses 1 from Queries.pdf document)
 
 Comments:
-==========
+--------
 Table 'Users' is named as 'Subscribers'.
 Multivalued attributes are handled using seperate tables.
 I have created views for few queries which will be dropped right after the query execution.
